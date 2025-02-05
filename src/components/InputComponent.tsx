@@ -5,24 +5,22 @@ import { styles } from '../theme/appThemes'
 interface Props{
     place:string;
     tipo?:KeyboardTypeOptions
+    isPassword?:boolean
+    handleChange:(name:string,value:string)=> void;
+    name:string;
     
 }
 
-export const InputComponent = ({place,tipo='default'}:Props) => {
-const [estadoInput, setEstadoInput] = useState<boolean>(false);
-const esconderPassword=(texto:string)=>{
-    if (texto=='Password') {
-        setEstadoInput(true);
-    }
-}
+export const InputComponent = ({place,tipo='default',isPassword=false,handleChange,name}:Props) => {
+
   return (
 
     <TextInput 
     placeholder={place}
     keyboardType={tipo}
     style={styles.inputText}
-    {()=>esconderPassword(place)}
-    secureTextEntry={estadoInput}
+    secureTextEntry={isPassword}
+    onChangeText={(value)=>handleChange(name,value)}
     />
 
 

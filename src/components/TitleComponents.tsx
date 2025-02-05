@@ -10,7 +10,7 @@ export const TitleComponents = ({title}:Props) => {
     const {height}=useWindowDimensions();
   return (
     <Text style={{...styles.title,
-        height:height*0.12
+        height:height*0.14
     }}>{title}</Text>
   )
 }

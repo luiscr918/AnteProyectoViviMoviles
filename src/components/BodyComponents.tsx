@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { View, Text, useWindowDimensions } from 'react-native';
 import { styles } from '../theme/appThemes';
 
-export const BodyComponents = (props:any) => {
+interface Props{
+  children:ReactNode; //Permite que el contenedor resiva cualquier componente
+}
+
+export const BodyComponents = ({children}:Props) => {
     //hook useWindows dimensions
     const {height}=useWindowDimensions();
   return (
@@ -10,7 +14,7 @@ export const BodyComponents = (props:any) => {
         ...styles.body,
         height:height*0.88
         }}>
-            {props.children}
+            {children}
 
     </View>
   )
