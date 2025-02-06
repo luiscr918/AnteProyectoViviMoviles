@@ -8,25 +8,18 @@ import { InputComponent } from '../components/InputComponent';
 import { ButtonComponent } from '../components/ButtonComponent';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { CommonActions, useNavigation } from '@react-navigation/native';
+import { User } from '../navigator/StackNavigator';
 
 //Definir Interfaz estructura formulario
 interface LoginForm {
   email: string;
   password: string;
 }
-//Definir la interface de la estructura de mis objetos usuarios
-interface User{
-  id:number;
-  name:string;
-  email:string;
-  password:string;
+//definir interfaz para las propiedades
+interface Props{
+  users:User[];
 }
-//definir arreglos con usuarios de prueba
-const users:User[]=[
-  {id:1,name:'Luis Castillo',email:'luiscast@gmail.com',password:'123'},
-  {id:2,name:'Vianka Flores',email:'vinkyFlor@gmail.com',password:'123'},
-]
-export const LoginScreen = () => {
+export const LoginScreen = ({users}:Props) => {
 
   //hook useState permite manejar el estado del form
   const [loginForm, setLoginForm] = useState<LoginForm>({
