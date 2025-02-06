@@ -53,6 +53,13 @@ export const styles = StyleSheet.create({
         position:'absolute',
         right:10,
         bottom:15
+    },
+    textRedirect:{
+        color:'#2F4AF7',
+        marginTop:20,
+        fontSize:15,
+        fontWeight:'bold',
+        textAlign:'center'
     }
 
 })
