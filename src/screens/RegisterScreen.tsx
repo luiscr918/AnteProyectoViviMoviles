@@ -40,6 +40,11 @@ export const RegisterScreen = ({users,addUsers}:Props) => {
         const existUser=users.find(user=>user.email===registerForm.email);
         return existUser;
     }
+    //Funcion para generar los ids de los usuarios
+    const getIdNewUser=():number=>{
+        const getIdUser=users.map(user=>user.id);
+        return Math.max(...getIdUser)+1; //[1,2]
+    }
     //Funcion para Registrarme 
     const handleRegister = () => {
         //validar si el formulario esta lleno
@@ -52,7 +57,19 @@ export const RegisterScreen = ({users,addUsers}:Props) => {
             Alert.alert('ERROR','El usuario ya existe')
             return;
         }
-        console.log(registerForm);
+        //Crear nuevo usuario
+        const newUser:User={
+            id:getIdNewUser(),
+            name:registerForm.name,
+            email:registerForm.email,
+            password:registerForm.password
+        }
+        //Agregar nuevo usuario al arreglo users
+        addUsers(newUser);
+        Alert.alert('Registro','Usuario registrado con éxito');
+        //Redireccionar al login
+        navigation.goBack();
+        /* console.log(registerForm); */
     }
     //hook useNavegation permite navegar entre pantallas
     const navigation = useNavigation();

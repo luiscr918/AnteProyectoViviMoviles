@@ -55,7 +55,9 @@ export const LoginScreen = ({users}:Props) => {
 
     
     //verificar si cambio el estado del formulario
-    console.log(loginForm);
+   /*  console.log(loginForm); */
+   //navegar al screen home si todo esta bien
+   navigation.dispatch(CommonActions.navigate({name:'Home'}))
   }
   //hook useState permite manejar el estado del password
   const [hiddenPassword, setHiddenPassword] = useState<boolean>(true);
