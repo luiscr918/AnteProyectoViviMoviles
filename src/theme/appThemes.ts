@@ -60,6 +60,27 @@ export const styles = StyleSheet.create({
         fontSize:15,
         fontWeight:'bold',
         textAlign:'center'
+    },
+    containerCard:{
+        padding:15,
+        shadowColor:'#000',
+        shadowOpacity:0.25,
+        shadowRadius:2.65,
+        borderWidth:1,
+        borderColor:SECONDARY_COLOR,
+        borderStyle:'solid',
+        margin:5,
+        elevation:2,
+        alignItems:'center'
+    },
+    titleCard:{
+        fontSize:15,
+        fontWeight:'bold',
+        color:TERTARY_COLOR
+    },
+    imageCard:{
+        height:200,
+        width:200
     }
 
 })

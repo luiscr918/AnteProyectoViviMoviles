@@ -3,7 +3,7 @@ import { LoginScreen } from '../screens/LoginScreen';
 import { PRIMARY_COLOR } from '../theme/commons/constant';
 import { RegisterScreen } from '../screens/RegisterScreen';
 import { useState } from 'react';
-import { HomeScreen } from '../screens/HomeScreen';
+import { HomeScreen } from '../screens/HomeScreen/HomeScreen';
 //Definir la interface de la estructura de mis objetos usuarios
 export interface User {
     id: number;
