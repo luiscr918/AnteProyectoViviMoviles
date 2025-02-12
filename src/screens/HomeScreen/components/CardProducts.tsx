@@ -7,8 +7,9 @@ import { PRIMARY_COLOR } from '../../../theme/commons/constant';
 import { ModalProduct } from './ModalProduct';
 interface Props {
     product: Product
+    handleChangeStock:(id: number, quantity: number)=>void
 }
-export const CardProducts = ({ product }: Props) => {
+export const CardProducts = ({ product,handleChangeStock }: Props) => {
     const { id, name, price, stock, pathImage } = product;
     //hook state para manejar la visibilidad del modal
     const [showModalProduct, setShowModalProduct] = useState<boolean>(false);
@@ -34,6 +35,7 @@ export const CardProducts = ({ product }: Props) => {
                 </View>
             </View>
             <ModalProduct product={product} 
+            handleChangeStock={handleChangeStock}
             isVisible={showModalProduct}
             setShowModalProduct={()=>setShowModalProduct(!setShowModalProduct)}
             />

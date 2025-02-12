@@ -9,14 +9,28 @@ interface Props {
     product: Product;
     isVisible: boolean;
     setShowModalProduct: () => void
+    handleChangeStock:(id: number, quantity: number)=>void
 }
 
-export const ModalProduct = ({ product, isVisible, setShowModalProduct }: Props) => {
-    const { name, pathImage, price, stock } = product;
+export const ModalProduct = ({ product, isVisible, setShowModalProduct,handleChangeStock }: Props) => {
+    const { id,name, pathImage, price, stock } = product;
     //hook useWindowDimension
     const { width } = useWindowDimensions();
     //hook useState para manejar la cantidad de productos
     const [quantity, setQuantity] = useState<number>(1);
+    //funcion de cerrar el modal y setear la cantidad a 1
+    const closeModal=()=>{
+        setShowModalProduct();
+        //modificar el valor del contador
+        setQuantity(1);
+    }
+    //duncion para agregar al carrito
+    const handleAddProduct=()=>{
+        //llamar funcion para actualizar el stock
+        handleChangeStock(id,quantity);
+        //cerrar el modal
+        closeModal();
+    }
     return (
         <Modal
             visible={isVisible}
@@ -36,7 +50,7 @@ export const ModalProduct = ({ product, isVisible, setShowModalProduct }: Props)
                                 name='close'
                                 size={25}
                                 color={PRIMARY_COLOR}
-                                onPress={setShowModalProduct}
+                                onPress={closeModal}
                             />
                         </View>
                     </View>
@@ -48,7 +62,7 @@ export const ModalProduct = ({ product, isVisible, setShowModalProduct }: Props)
                     </View>
                     {
                         (stock === 0)
-                            ? <Text>Producto Agotado</Text>
+                            ? <Text style={styles.textWarningStock}>Producto Agotado</Text>
                             :
                             <View>
                                 <View style={styles.containerQuantity}>
@@ -70,7 +84,9 @@ export const ModalProduct = ({ product, isVisible, setShowModalProduct }: Props)
                                     <Text style={styles.textQuantity}>Total: $ {(price * quantity).toFixed(2)}</Text>
                                 </View>
                                 <View>
-                                    <TouchableOpacity style={styles.buttonAddCar}>
+                                    <TouchableOpacity style={styles.buttonAddCar}
+                                    onPress={handleAddProduct}
+                                    >
                                         <Text style={styles.buttonAddCarText}>Agregar carrito</Text>
                                     </TouchableOpacity>
                                 </View>
